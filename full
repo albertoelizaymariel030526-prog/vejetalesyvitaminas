@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Landing Viral</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 16px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn1 { background: #ff3c3c; }
+    .btn1:hover { background: #e62929; }
+
+    .btn2 { background: #26c281; }
+    .btn2:hover { background: #1fa06a; }
+
+    .btn3 { background: #f1c40f; color: black; }
+    .btn3:hover { background: #d4ac0d; }
+
+    .logo {
+      max-width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  
+  
+  
+     script redirecion por dispositivos 3 no redirige por limites en pc
+y tiene una tercera redirecion si el usiario entra 3 veces
+
+<script>
+  // URLs personalizadas
+  const urlMovil = "https://www.techblog.website/crm-vs-erp/";
+  const urlLimite = "https://www.techblog.website/erp-and-crm/";                                                    
+  const urlPC = "https://www.youtube.com/";
+
+  // Configuración de límite
+  const maxEntradas = 5;
+  const periodo = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
+  const storageKey = 'contadorAccesos';
+  const ahora = Date.now();
+
+  // Detectar dispositivo móvil
+  function esDispositivoMovil() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+
+  if (esDispositivoMovil()) {
+    // Control de acceso para móviles
+    let datos = JSON.parse(localStorage.getItem(storageKey));
+
+    if (!datos) {
+      // Primer acceso
+      datos = {
+        contador: 1,
+        primerAcceso: ahora
+      };
+      localStorage.setItem(storageKey, JSON.stringify(datos));
+    } else {
+      if (ahora - datos.primerAcceso > periodo) {
+        // Reiniciar si pasó el periodo
+        datos = {
+          contador: 1,
+          primerAcceso: ahora
+        };
+      } else {
+        datos.contador++;
+      }
+      localStorage.setItem(storageKey, JSON.stringify(datos));
+    }
+
+    // Redirección según número de accesos
+    if (datos.contador > maxEntradas) {
+      window.location.href = urlLimite;
+    } else {
+      window.location.href = urlMovil;
+    }
+
+  } else {
+    // Redirección directa para usuarios de PC
+    window.location.href = urlPC;
+      }
+</script>
+    
+    
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" class="logo" alt="Logo" />
+    <h1>🔥 ¡Descubre el contenido que está rompiendo internet!</h1>
+    <p>Videos exclusivos, entretenimiento viral y contenido que paga CPM alto. ¡Haz clic y gana!</p>
+
+    <a href="https://tu-link1.com" class="button btn1">🎬 Ver Video Exclusivo</a>
+    <a href="https://tu-link2.com" class="button btn2">📱 Acceder al Contenido</a>
+    <a href="https://tu-link3.com" class="button btn3">💰 Gana Dinero Viendo</a>
+  </div>
+</body>
+</html>
